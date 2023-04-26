@@ -2,8 +2,26 @@
   "extends": "./tsconfig.app.json",
   "exclude": [],
   "compilerOptions": {
-    "composite": true,
-    "lib": [],
-    "types": ["node", "jsdom"]
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "target": "es6",
+    "lib": ["es2018", "dom"],
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "verbatimModuleSyntax": true, // add this line
+    "ignoreDeprecations": "5.0" // add this line
   }
 }
