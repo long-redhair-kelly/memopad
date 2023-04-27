@@ -7,7 +7,7 @@ const store = useStore()
 const router = useRouter()
 const props = defineProps(['memo'])
 const memo: Memo = {
-  id: 0,
+  id: props.memo ? props.memo.id : 0,
   title: props.memo ? props.memo.title : '',
   content: props.memo ? props.memo.content : ''
 }
@@ -22,13 +22,27 @@ const save = () => {
   // topへ画面遷移
   router.push('/')
 }
+
+/**
+ * メモ削除
+ */
+const remove = () => {
+  // メモ削除
+  store.commit('delete', memo.id)
+
+  // topへ画面遷移
+  router.push('/')
+}
 </script>
 
 <template>
   <div>
     <div><input type="text" v-model="memo.title" /></div>
     <div><textarea v-model="memo.content" cols="30" rows="10"></textarea></div>
-    <div class="center"><button @click="save">保存</button></div>
+    <div class="center">
+      <button @click="save">保存</button>
+      <button v-if="memo.id > 0" @click="remove">削除</button>
+    </div>
   </div>
 </template>
 
@@ -49,5 +63,8 @@ botton {
 }
 .center {
   text-align: center;
+}
+button:hover {
+  cursor: pointer;
 }
 </style>

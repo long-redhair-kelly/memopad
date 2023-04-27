@@ -11,5 +11,6 @@ const memo = computed(() => store.getters.getMemoById(id))
 </script>
 
 <template>
-  <MemoForm :memo="memo" />
+  <MemoForm v-if="memo" :memo="memo" />
+  <p v-else>指定されたメモはありません。</p>
 </template>

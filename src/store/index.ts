@@ -17,10 +17,24 @@ export default createStore({
     }
   },
   mutations: {
-    /** メモを保存する */
+    /**
+     * メモを保存する
+     */
     save(state, newMemo) {
+      if (newMemo.id > 0) {
+        // 編集の場合
+        const editMemo = state.memos.find((memo) => memo.id === newMemo.id)
+        editMemo.title = newMemo.title
+        editMemo.content = newMemo.content
+        return editMemo
+      }
+
+      // 新規の場合
       newMemo.id = ++state.count
       state.memos.unshift(newMemo)
+    },
+    delete(state, id) {
+      state.memos = state.memos.filter((memo) => memo.id !== id)
     }
   },
   actions: {},
