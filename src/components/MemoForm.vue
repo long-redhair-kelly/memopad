@@ -3,14 +3,14 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import type { Memo } from '@/interfaces/Memo'
 
-const memo: Memo = {
-  id: 0,
-  title: '',
-  content: ''
-}
-
 const store = useStore()
 const router = useRouter()
+const props = defineProps(['memo'])
+const memo: Memo = {
+  id: 0,
+  title: props.memo ? props.memo.title : '',
+  content: props.memo ? props.memo.content : ''
+}
 
 /**
  * メモ保存
